@@ -12,7 +12,7 @@ function pushDoc(document) {
 }
 
 App.onLaunch = () => {
-	const templateURL = 'http://localhost:3000';
+	const templateURL = 'http://localhost:3000/home';
 	getDocument(templateURL);
 }
 
