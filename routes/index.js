@@ -6,12 +6,15 @@ const { DeviceDiscovery } = require('sonos');
 router.get('/home', (req, res, next) => {
   DeviceDiscovery((device) => {
     const zoneName = device.getName();
-    const currentTrack = device.currentTrack();
+    const queue = device.getQueue();
 
-    Promise.all([zoneName, currentTrack])
-      .then(([zone, { title, artist, album, albumArtURL: image }]) => {
-        res.render('layout', { title, artist, album, image, zone });
+    Promise.all([zoneName, queue])
+      .then(([zone, { items }]) => {
+        const tracks = items.map(({ title, artist, album, albumArtURI: image }) => ({ title, artist, album, image }));
+
+        res.render('layout', { tracks, zone });
       })
+      .catch(err => console.error(err));
   });
 });
 

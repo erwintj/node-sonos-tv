@@ -1,20 +1,22 @@
 <document>
-  <head>
-    <style>
-      .dark-background {
-        background-color: rgb(0, 0, 0);
-      }
-    </style>
-  </head>
-  <stackTemplate theme="dark" class="dark-background">
-    <banner>
-      <title>Sonos Controller</title>
-    </banner>
-    <button>
-      <title>Play</title>
-    </button>
-    <button>
-      <title>Pause</title>
-    </button>
-  </stackTemplate>
+  <compilationTemplate>
+    <list>
+      <relatedContent>
+        <itemBanner>
+          <heroImg src="{{image}}" width="556" height="556" />
+        </itemBanner>
+      </relatedContent>
+      <header>
+        <title>{{zone}}</title>
+      </header>
+      <section>
+        {{#each tracks}}
+        <listItemLockup>
+          <title>{{title}}</title>
+          <subtitle>{{artist}}</subtitle>
+        </listItemLockup>
+        {{/each}}
+      </section>
+    </list>
+  </compilationTemplate>
 </document>
